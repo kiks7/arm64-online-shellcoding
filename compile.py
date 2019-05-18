@@ -38,7 +38,7 @@ def main(filename):
 	}
 
 	headers = {
-		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:66.0)',
+		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 77.77; rv:66.0)',
 	}
 	
 	resp = requests.post('http://armconverter.com/index.php',headers=headers,data=postData)

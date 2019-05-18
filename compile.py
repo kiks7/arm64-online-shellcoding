@@ -48,18 +48,29 @@ def main(filename):
 	else:
 		# may gOOd response :)		
 		parsed_html = BeautifulSoup(resp.text,'lxml')
+
+		# PARSE THE OBJDUMP OUTPUT
+		try:
+			objDump = parsed_html.body.find('cmd', attrs={'id':'txtRaw1'}).text.replace('S','').decode('utf-8')
+		except Exception as lel:
+			print_error('Error parsing response')
+			print lol
+			sys.exit()
+		print '=' * 20 + ' OBJDUMP' + '=' * 20
+		print objDump 
+		print '=' * 20 + ' OBJDUMP' + '=' * 20
+		# PARSE THE SHELLCODE
 		try:
 			retHex = parsed_html.body.find('cmd', attrs={'id':'txtTitle2_64'}).text.replace('S','').decode('utf-8').replace('\x0d','').replace('\x0a','')
 		except Exception as lel:
 			print_error('Error parsing response .. may be also empty')
+			print lel
 			sys.exit()
-		print_ok('Noice response :)')
 		shellcode = '\\x'+'\\x'.join(retHex[i:i+2] for i in range(0, len(retHex), 2))			
-		print '['
+		print '=' * 20 + ' SHELLCODE' + '=' * 20
 		print shellcode
-		print ']'
+		print '=' * 20 + 'SHELLCPODE' + '=' * 20
 		print_ok('Done!')	
-
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()

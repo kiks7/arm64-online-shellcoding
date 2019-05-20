@@ -69,7 +69,20 @@ def main(filename):
 		shellcode = '\\x'+'\\x'.join(retHex[i:i+2] for i in range(0, len(retHex), 2))			
 		print '=' * 20 + ' SHELLCODE' + '=' * 20
 		print shellcode
-		print '=' * 20 + 'SHELLCPODE' + '=' * 20
+		print '=' * 20 + 'SHELLCODE' + '=' * 20
+
+		print '=' * 20 + ' RAW' + '=' * 20
+		print retHex
+		print '=' * 20 + ' RAW' + '=' * 20
+		n = 8 
+		dividedHex =  [retHex[i:i+n] for i in range(0, len(retHex), n)]
+
+		print '=' * 20 + ' PYTHON' + '=' * 20
+		print 'shellcode = \'\''
+		for bytecode in dividedHex:
+			formatted = '\\x'+'\\x'.join(bytecode[i:i+2] for i in range(0, len(bytecode), 2))
+			print 'shellcode += \''+formatted+'\''
+		print '=' * 20 + ' PYTHON' + '=' * 20
 		print_ok('Done!')	
 
 if __name__ == '__main__':
